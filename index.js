@@ -82,27 +82,27 @@ app.get("/mentors", async (req, res) => {
 
 app.put("/assign-student", async (req, res) => {
   const { mentorName, studentsAssigned } = req.body;
-  const mentor = await client
-    .db("classes")
-    .collection("mentors")
-    .updateOne(
-      { mentorName: mentorName },
-      {
-        $addToSet: {
-          studentsAssigned: studentsAssigned,
-        },
-      }
-    );
 
   const studentName = studentsAssigned.map((stu) => {
     console.log(stu, mentorName);
-    const students = client
+    const students = await client
       .db("classes")
       .collection("students")
       .updateOne(
         { studentName: stu },
         {
           $set: { mentorAssigned: mentorName },
+        }
+      );
+    const mentor = await client
+      .db("classes")
+      .collection("mentors")
+      .updateOne(
+        { mentorName: mentorName },
+        {
+          $addToSet: {
+            studentsAssigned: stu,
+          },
         }
       );
   });
