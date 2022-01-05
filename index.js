@@ -82,8 +82,7 @@ app.get("/mentors", async (req, res) => {
 
 app.put("/assign-student", async (req, res) => {
   const { mentorName, studentsAssigned } = req.body;
-
-  const studentName = studentsAssigned.map((stu) => {
+  studentsAssigned.map((stu) => {
     console.log(stu, mentorName);
     const students = await client
       .db("classes")
