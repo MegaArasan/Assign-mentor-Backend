@@ -101,9 +101,11 @@ app.put("/assign-student", async (req, res) => {
       .collection("students")
       .updateOne(
         { studentName: stu },
-        { $addToSet: {
-          studentsAssigned: studentName,
-        }, }
+        {
+          $addToSet: {
+            studentsAssigned: studentName,
+          },
+        }
       );
   });
 
