@@ -82,7 +82,8 @@ app.get("/mentors", async (req, res) => {
 
 app.put("/assign-student", async (req, res) => {
   const { mentorName, studentsAssigned } = req.body;
-  studentsAssigned.map((stu) => {
+
+  const studentName = studentsAssigned.map((stu) => {
     console.log(stu, mentorName);
     const students = await client
       .db("classes")
@@ -106,7 +107,7 @@ app.put("/assign-student", async (req, res) => {
       );
   });
 
-  res.send({ Msg: "Database Updated Successfully" });
+  res.send(studentName, { Msg: "Database Updated Successfully" });
 });
 
 app.put("/assign-mentor", async (req, res) => {
