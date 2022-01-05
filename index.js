@@ -59,23 +59,27 @@ app.get("/mentors", async (req, res) => {
     .toArray();
   res.status(200).send(data);
 });
-app.post("/mentors", async (req, res) => {
-  const data = req.body;
-  const mentors = await client
-    .db("classes")
-    .collection("mentors")
-    .insertMany(data);
-  res.send(mentors);
-});
 
-app.post("/students", async (req, res) => {
-  const data = req.body;
-  const students = await client
-    .db("classes")
-    .collection("students")
-    .insertMany(data);
-  res.send(students);
-});
+// inserting set of ample data
+// app.post("/mentors", async (req, res) => {
+//   const data = req.body;
+//   const mentors = await client
+//     .db("classes")
+//     .collection("mentors")
+//     .insertMany(data);
+//   res.send(mentors);
+// });
+
+// inserting set of ample data
+// app.post("/students", async (req, res) => {
+//   const data = req.body;
+//   const students = await client
+//     .db("classes")
+//     .collection("students")
+//     .insertMany(data);
+//   res.send(students);
+// });
+
 app.put("/assign-student", async (req, res) => {
   const { mentorName, studentsAssigned } = req.body;
   const mentor = await client
@@ -83,7 +87,11 @@ app.put("/assign-student", async (req, res) => {
     .collection("mentors")
     .updateOne(
       { mentorName: mentorName },
-      { $set: { studentsAssigned: studentsAssigned } }
+      {
+        $addToSet: {
+          studentsAssigned: studentName,
+        },
+      }
     );
 
   const studentName = studentsAssigned.map((stu) => {
