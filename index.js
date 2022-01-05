@@ -89,7 +89,7 @@ app.put("/assign-student", async (req, res) => {
       { mentorName: mentorName },
       {
         $addToSet: {
-          studentsAssigned: studentName,
+          studentsAssigned: studentsAssigned,
         },
       }
     );
@@ -102,7 +102,7 @@ app.put("/assign-student", async (req, res) => {
       .updateOne(
         { studentName: stu },
         {
-          $set: { mentorAssigned: mentorAssigned },
+          $set: { mentorAssigned: mentorName },
         }
       );
   });
