@@ -59,7 +59,6 @@ app.get("/mentors", async (req, res) => {
     .toArray();
   res.status(200).send(data);
 });
-<<<<<<< HEAD
 
 // inserting set of ample data
 // app.post("/mentors", async (req, res) => {
@@ -72,19 +71,6 @@ app.get("/mentors", async (req, res) => {
 // });
 
 // inserting set of ample data
-=======
-// inserting set of ample data
-// app.post("/mentors", async (req, res) => {
-//   const data = req.body;
-//   const mentors = await client
-//     .db("classes")
-//     .collection("mentors")
-//     .insertMany(data);
-//   res.send(mentors);
-// });
-
-// inserting set of ample data
->>>>>>> a5635547f49481714db00cd89ac80ee09262a6d1
 // app.post("/students", async (req, res) => {
 //   const data = req.body;
 //   const students = await client
@@ -93,10 +79,7 @@ app.get("/mentors", async (req, res) => {
 //     .insertMany(data);
 //   res.send(students);
 // });
-<<<<<<< HEAD
 
-=======
->>>>>>> a5635547f49481714db00cd89ac80ee09262a6d1
 app.put("/assign-student", async (req, res) => {
   const { mentorName, studentsAssigned } = req.body;
   const mentor = await client
