@@ -96,7 +96,7 @@ app.put("/assign-student", async (req, res) => {
     );
   const studentName = studentsAssigned.map((stu) => {
     // console.log(stu, mentorName);
-    const students = await client
+    const students = client
       .db("classes")
       .collection("students")
       .updateOne(
